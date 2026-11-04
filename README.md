@@ -92,7 +92,7 @@ src/
 The app is a static single-page site (`dist/`), and profile URLs use query strings, so no rewrite rules are needed.
 
 - **Vercel / Netlify / Cloudflare Pages:** build command `npm run build`, output directory `dist`. Set `VITE_*` variables in the project settings only if you accept the token caveat above.
-- **GitHub Pages:** set `base: "/<repo-name>/"` in `vite.config.ts`, build, and publish `dist/` (for example with a GitHub Actions Pages workflow).
+- **GitHub Pages (configured):** `.github/workflows/deploy.yml` runs the tests, builds with `BASE_PATH=/<repo-name>/` and publishes `dist/` on every push to `main`. One-time setup: in the repository go to Settings → Pages and set **Source** to **GitHub Actions**. The site is then served at `https://<user>.github.io/<repo-name>/`. To build for a sub-path locally: `BASE_PATH=/github-profile-explorer/ npm run build`.
 - **Any static host:** upload the contents of `dist/`.
 
 ## Testing
